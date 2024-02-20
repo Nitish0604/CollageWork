@@ -1,12 +1,30 @@
 import React, { useState } from 'react';
+import { IoEyeOffSharp } from "react-icons/io5";
+import { FaEye } from "react-icons/fa6";
 
 const Signup = () => {
+
+  const[password,setpassword]=useState(true);
+
+  const eye=()=>{
+      setpassword(!password);
+  }
 
   const [formData, setFormData] = useState({
     fullName: '',
     gmail: '',
     password: '',
   });
+
+  function reset() {
+    setFormData({
+      fullName: '',
+      gmail: '',
+      password: '',
+    })
+   
+    
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +35,7 @@ const Signup = () => {
     e.preventDefault();
     // You can handle form submission here (e.g., send data to a server).
     console.log('Form data submitted:', formData);
+    reset();
   };
 
   return (
@@ -74,16 +93,25 @@ const Signup = () => {
                 
                 
                   {/* <label htmlFor="password">Password:</label> */}
+                  <div className='w-full flex items-center'>
                   <input
-                  className='border-b-2 border-cyan-500 h-10 px-1'
+                  className='border-b-2 border-cyan-500 h-10 px-1 w-[95%]'
                   placeholder='Password'
-                    type="password"
+                  type={password ? 'password':'text'}
                     id="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     required
                   />
+                  <div className=' cursor-pointer w-[5%]' onClick={eye}>
+                                {
+                                    password? <IoEyeOffSharp /> :  <FaEye /> 
+                                }
+                           
+                  </div>
+                  </div>
+                  
                 
                 <button className='w-full bg-cyan-400 text-white font-semibold rounded-md py-2' type="submit">Create Account</button>
               </form>
