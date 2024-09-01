@@ -3,17 +3,21 @@ import React from 'react'
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import right from "../assets/right.png"
+
 
 
 //icons
 import { RiDashboardFill } from "react-icons/ri";
-import { FaConciergeBell } from "react-icons/fa";
-import { HiOutlineSpeakerphone } from "react-icons/hi";
+import { GiJeweledChalice } from "react-icons/gi";
+import { RiWallet3Fill } from "react-icons/ri";
 import { MdOutlinePerson3 } from "react-icons/md";
 import { CiSettings } from "react-icons/ci";
 import { IoLogOutOutline } from "react-icons/io5";
 import { HiChevronUpDown } from "react-icons/hi2";
+import { GiPodiumWinner } from "react-icons/gi";
 import { FiPlus } from "react-icons/fi";
+import Navbar from '../component/Navbar';
 //import feedback from "../../assets/Vector.png";
 
 const Outlets = () => {
@@ -25,7 +29,7 @@ const Outlets = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("token");
     toast.error("Successfully Logged Out");
-    navigate("/login");
+    navigate("/landingpage");
   };
 
   const handleToggle = () => {
@@ -40,8 +44,35 @@ const Outlets = () => {
   const location = useLocation();
   return (
     <>
-     <div className="flex items-center justify-between px-[2rem] py-[1rem] bg-lime-400  gap-1 ">
-              <div>
+    <Navbar />
+    
+     <nav
+        className={`fixed bg-white z-50  h-[calc(100vh-70px)] border-r shadow-xl shadow-[#00000026] ${
+          isOpen ? "lg:w-[15%] duration-100" : "lg:w-[7%] duration-100"
+        }`}
+      >
+        
+
+        <div className="md:hidden lg:flex relative w-full flex flex-col justify-evenly items-center">
+          <img
+            onClick={handleToggle}
+            className={`absolute top-2 size-14 cursor-pointer -right-7 ${
+              isOpen ? " rotate-180" : " rotate-0"
+            }`}
+            src={right}
+            alt=""
+          />
+          
+
+          
+
+          <div
+            className={`flex w-full items-center flex-col justify-between    text-[#64748B] text-[1.1rem] ${
+              isOpen ? "gap-8 top-[2rem] " : "gap-20 top-[2rem] "
+            }`}
+          >
+            <div className="flex flex-col  gap-2 mt-[2rem] ">
+            <div>
                 <Link
                   onClick={handleScrollToTop}
                   className={`${
@@ -56,7 +87,7 @@ const Outlets = () => {
                   <RiDashboardFill />
                   <span
                     onClick={handleToggle}
-                    className={` ${isOpen ? "block text-[.9rem]" : " hidden"}`}
+                    className={` ${isOpen ? "block text-[1.1rem]" : " hidden"}`}
                   >
                     Dashboard{" "}
                     <span className=" text-transparent ">_______</span>
@@ -75,12 +106,12 @@ const Outlets = () => {
                   } `}
                   to="/challenge"
                 >
-                  <FaConciergeBell />
+                  <GiJeweledChalice />
                   <span
                     onClick={handleToggle}
                     className={` ${isOpen ? "block text-[.9rem]" : " hidden"}`}
                   >
-                    Menu{" "}
+                    Challenge{" "}
                     <span className=" text-transparent">...__________..</span>
                   </span>
                 </Link>
@@ -98,12 +129,12 @@ const Outlets = () => {
                   } `}
                   to="/leaderboard"
                 >
-                  <MdOutlinePerson3 />
+                  <GiPodiumWinner />
                   <span
                     onClick={handleToggle}
                     className={` ${isOpen ? "block text-[.9rem]" : " hidden"}`}
                   >
-                    Customer <span className=" text-transparent ">______</span>
+                    Leaderboard <span className=" text-transparent ">______</span>
                   </span>
                 </Link>
               </div>
@@ -119,39 +150,17 @@ const Outlets = () => {
                   } `}
                   to="/wallet"
                 >
-                  <HiOutlineSpeakerphone />
+                  <RiWallet3Fill />
                   <span
                     onClick={handleToggle}
                     className={` ${isOpen ? "block text-[.9rem]" : " hidden"}`}
                   >
-                    Marketing{" "}
+                    Wallet{" "}
                     <span className=" text-transparent ">_______</span>
                   </span>
                 </Link>
               </div>
-              <div>
-                <Link
-                  onClick={handleScrollToTop}
-                  className={`${
-                    location.pathname === "/feedback"
-                      ? "text-[#004AAD] bg-slate-100  "
-                      : "text-[#64748B]"
-                  } flex gap-2 text-nowrap items-center hover:text-[#004AAD] rounded-xl ${
-                    isOpen ? "px-5 mx-3 py-2.5  " : " p-4 "
-                  } `}
-                  to="/feedback"
-                >
-                  
-                  
-                  <span
-                    onClick={handleToggle}
-                    className={` ${isOpen ? "block text-[.9rem]" : " hidden"}`}
-                  >
-                    Feedback{" "}
-                    <span className=" text-transparent ">_______</span>
-                  </span>
-                </Link>
-              </div>
+              
               <div>
                 <Link
                   onClick={handleScrollToTop}
@@ -173,7 +182,7 @@ const Outlets = () => {
                   </span>
                 </Link>
               </div>
-              <div className="hidden lg:block">
+              <div className="block">
                 <div
                   className={`flex items-center text-nowrap  gap-3 text-red-500 hover:cursor-pointer ${
                     isOpen ? "px-5 mx-3 py-2.5  " : " p-4 "
@@ -191,6 +200,13 @@ const Outlets = () => {
                 </div>
               </div>
             </div>
+          
+            
+          </div>
+
+
+        </div>
+      </nav>
     <Outlet />
     </>
   )

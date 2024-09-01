@@ -15,6 +15,7 @@ import Challenge from './pages/Challenge';
 import Leaderboard from './pages/Leaderboard';
 import Wallet from './pages/Wallet';
 import Setting from './pages/Setting';
+import LandingPage from './pages/LandingPage';
 
 export const baseUrl = "https://dolphin-app-fmayj.ondigitalocean.app";
 function App() {
@@ -22,12 +23,14 @@ function App() {
     <div className="App">
      
       <Routes>
+      <Route path="/landingpage" element={<LandingPage />} />
        
         <Route path="/login" element={<Login />} />
         <Route path='/signup' element={<Signup/>}></Route>
         <Route path="/verify" element={<Verify />} />
         <Route path="/newpassword" element={<NewPassword />} />
         <Route path="/register" element={<Register />} />
+       
         {/* <Route path='/' element={<Signup/>}></Route> */}
         <Route path="/" element={<Outlets />}>
           <Route index element={<Dashboard />} />
