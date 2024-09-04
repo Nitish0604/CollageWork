@@ -4,7 +4,7 @@ import { FaCode } from 'react-icons/fa'
 
 const Navbar = () => {
   return (
-    <header className="px-4 lg:px-6 h-[65px] flex items-center bg-background border-b">
+    <header className="  px-4 lg:px-6 h-[65px] flex items-center bg-background border-b">
         <Link href="#" className="flex items-center justify-center gap-[.6rem]" prefetch={false}>
           <FaCode className="h-6 w-6 text-primary" />
           <span className="text-[1.6rem] font-bold">CodeBet</span>
